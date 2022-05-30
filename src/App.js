@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import GlobalStyle from "./globalStyles.";
+import { BrowserRouter as Router } from "react-router-dom";
+import styled from "styled-components";
+import Sidebar from "./components/sidebar/Sidebar.jsx";
+import MainHeader from "./components/header/MainHeader";
+import Index from "./routes";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppStyles>
+      <GlobalStyle />
+      <Router>
+        <Sidebar />
+        <div className="container">
+          <MainHeader />
+          <div className="pages">
+            <Index />
+          </div>
+        </div>
+      </Router>
+    </AppStyles>
   );
-}
+};
+
+const AppStyles = styled.div`
+  display: flex;
+
+  height: 100%;
+  .container {
+    flex: 4;
+  }
+`;
 
 export default App;
